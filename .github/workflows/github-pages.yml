@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   
   push:
-    branches: ["master"]
+      branches: ["master"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -36,7 +36,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload only the site directory
+          # Upload only the site directory --
           path: './lacunafund-httrack-backup'
       - name: Deploy to GitHub Pages
         id: deployment
