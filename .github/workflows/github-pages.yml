@@ -4,7 +4,9 @@ name: Deploy static content to Pages
 on:
   
   push:
-    branches: ["master"]
+    branches:
+      - master
+      - site-setup
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
