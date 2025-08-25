@@ -1,12 +1,11 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Deploy static content to Github Pages
 
 on:
   
   push:
       branches: ["master"]
 
-  # Allows you to run this workflow manually from the Actions tab
+  #manually run actions from git
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -15,7 +14,7 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# allows the workflow to be triggered by a deployment event
 
 concurrency:
   group: "pages"
@@ -33,11 +32,18 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Create site directory
+        run: |
+          # Create _site directory for deployment
+          mkdir -p _site
+          # Copy the lacunafund.org content to root of _site
+          cp -r lacunafund-httrack-backup/lacunafund.org/* _site/
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload only the site directory --
-          path: './lacunafund-httrack-backup'
+          # Upload the _site directory with the correct structure
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
