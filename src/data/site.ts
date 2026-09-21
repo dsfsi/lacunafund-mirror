@@ -239,6 +239,10 @@ export const governance = {
     "The Secretariat provides backbone support to the Fund as a whole, including managing the RFP process and distribution of funds. Meridian Institute serves as Secretariat for the Lacuna Fund.",
   policies: [
     {
+      label: "Datawise Impact Assessment Report",
+      url: "/reports/lacuna-fund-datasets-impact-assessment-report.pdf",
+    },
+    {
       label: "Conflict of Interest Policy",
       url: "https://www.dsfsi.co.za/lacunafund-mirror/wp-content/uploads/sites/11/2024/04/COI-Policy_LacunaFund.pdf",
     },
