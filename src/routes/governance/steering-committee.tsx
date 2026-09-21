@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
 import { BasePage } from "@/components/BasePage";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { ContentSection, InfoPanel } from "@/components/ui-kit";
 import { steeringCommittee } from "@/data/site";
 import { socialMeta } from "@/lib/seo";
@@ -51,7 +50,6 @@ function SteeringCommitteePage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {steeringCommittee.members.map((member) => (
               <article key={member} className="card-surface overflow-hidden rounded-2xl">
-                <ImagePlaceholder label="Portrait Placeholder" ratio="4/3" className="rounded-none border-0" />
                 <div className="p-5">
                   <h3 className="text-base font-semibold text-foreground">{member}</h3>
                   <p className="mt-1 text-xs tracking-wide text-sky uppercase">

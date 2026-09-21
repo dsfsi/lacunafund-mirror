@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FileText } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { BasePage } from "@/components/BasePage";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Button, Card, ContentSection, InfoPanel } from "@/components/ui-kit";
 import { governance, site } from "@/data/site";
 import {
@@ -71,7 +70,6 @@ function GovernancePage() {
                 linkLabel={body.linkLabel}
                 accent={i === 0 ? "gold" : i === 1 ? "primary" : "sky"}
               >
-                <ImagePlaceholder label="Image Placeholder" ratio="3/2" className="mb-4" />
                 {body.body}
               </Card>
             ))}
