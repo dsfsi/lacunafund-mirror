@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
 import { BasePage } from "@/components/BasePage";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { FunderLogo } from "@/components/FunderLogo";
 import { Button, ContentSection, InfoPanel } from "@/components/ui-kit";
 import { funders } from "@/data/site";
 import { socialMeta } from "@/lib/seo";
@@ -35,7 +35,6 @@ function FundersPage() {
         title="Funders"
         intro={funders.intro}
         crumbs={[{ label: "Governance", to: "/governance" }, { label: "Funders" }]}
-        aside={<ImagePlaceholder label="Funder Logos Placeholder" ratio="3/2" />}
       >
         <InfoPanel tone="gold" title="Global initiative">
           {funders.callout.text}{" "}
@@ -58,7 +57,7 @@ function FundersPage() {
                   }`}
                 />
                 <div className="grid gap-5 sm:grid-cols-[170px_1fr] sm:items-start">
-                  <ImagePlaceholder label="Logo Placeholder" ratio="3/2" />
+                  <FunderLogo name={funder.name} />
                   <div>
                     <h3 className="text-lg font-semibold text-foreground">{funder.name}</h3>
                     <p className="prose-body mt-2 text-sm">{funder.body}</p>

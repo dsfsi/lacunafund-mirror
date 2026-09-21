@@ -1,13 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Database, Quote, PlayCircle } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { FunderLogo } from "@/components/FunderLogo";
 import { Button, Card, ContentSection, InfoPanel, StatGrid } from "@/components/ui-kit";
 import { renderInline } from "@/components/Markdown";
 import logoMark from "@/assets/logo-mark.png";
 import { domains, funders, home, taps } from "@/data/site";
 import datasets from "@/data/datasets.json";
 import { socialMeta } from "@/lib/seo";
+import { VideoEmbed } from "@/components/VideoEmbed";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -61,33 +62,38 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="card-surface rounded-3xl p-6">
-                <img
-                  src={logoMark}
-                  alt="Lacuna Fund logo"
-                  width={72}
-                  height={72}
-                  className="size-16 rounded-xl"
-                />
-                <h2 className="mt-5 font-display text-lg font-semibold text-foreground">
-                  {home.video.title}
-                </h2>
-                <p className="mt-2 text-xs text-muted-foreground">{home.video.caption}</p>
-                <div className="mt-4">
-                  <ImagePlaceholder label="Video Thumbnail Placeholder" ratio="16/9" />
-                </div>
-                <a
-                  href={home.video.url}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-sky"
-                >
-                  <PlayCircle className="size-4" aria-hidden />
-                  Watch on Vimeo
-                </a>
-              </div>
-            </div>
+           <div className="relative">
+  <div className="card-surface rounded-3xl p-6">
+    <img
+      src={logoMark}
+      alt="Lacuna Fund logo"
+      width={72}
+      height={72}
+      className="size-16 rounded-xl"
+    />
+    <h2 className="mt-5 font-display text-lg font-semibold text-foreground">
+      {home.video.title}
+    </h2>
+    <p className="mt-2 text-xs text-muted-foreground">{home.video.caption}</p>
+
+    <div className="mt-4">
+      <VideoEmbed
+        videoId="867005447"
+        title={home.video.title}
+      />
+    </div>
+
+    <a
+      href={home.video.url}
+      target="_blank"
+      rel="noreferrer noopener"
+      className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-sky"
+    >
+      <PlayCircle className="size-4" aria-hidden />
+      Watch on Vimeo
+    </a>
+  </div>
+</div>
           </div>
         </div>
       </section>
@@ -151,7 +157,7 @@ function HomePage() {
                 rel="noreferrer noopener"
                 className="card-surface group flex flex-col gap-3 rounded-xl p-4 transition-colors hover:border-sky/50"
               >
-                <ImagePlaceholder label="Logo Placeholder" ratio="3/2" />
+                <FunderLogo name={funder.name} />
                 <span className="text-sm font-medium text-foreground group-hover:text-sky">
                   {funder.name}
                 </span>
