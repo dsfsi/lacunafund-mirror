@@ -2,11 +2,23 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { BasePage } from "@/components/BasePage";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Button, Card, ContentSection, InfoPanel } from "@/components/ui-kit";
 import { renderInline } from "@/components/Markdown";
 import { about, domains } from "@/data/site";
 import { socialMeta } from "@/lib/seo";
+import timOunImage from "@/assets/tim-oun-FjE-FyxDmlw-unsplash.jpg";
+import needImage from "@/assets/compress_2H6A9795-1-810x540.jpg";
+import agriImage from "@/assets/agri1.jpg";
+import healthImage from "@/assets/health1.jpg";
+import climateImage from "@/assets/climate1.jpg";
+import langImage from "@/assets/lang1.jpg";
+
+const domainImages: Record<string, string> = {
+  agriculture: agriImage,
+  health: healthImage,
+  climate: climateImage,
+  language: langImage,
+};
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -37,7 +49,16 @@ function AboutPage() {
         title="About Lacuna Fund"
         intro={about.intro}
         crumbs={[{ label: "About" }]}
-        aside={<ImagePlaceholder label="Image Placeholder" ratio="3/2" />}
+        aside={
+          <div className="relative aspect-[3/2] overflow-hidden rounded-2xl">
+            <img
+              src={timOunImage}
+              alt=""
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        }
       >
         <ContentSection eyebrow="The challenge" title="The Need">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
@@ -48,7 +69,14 @@ function AboutPage() {
                 </p>
               ))}
             </div>
-            <ImagePlaceholder label="Image Placeholder" ratio="4/3" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+              <img
+                src={needImage}
+                alt=""
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
           </div>
         </ContentSection>
 
@@ -76,19 +104,31 @@ function AboutPage() {
           description={about.domainsIntro}
         >
           <div className="grid gap-5 sm:grid-cols-2">
-            {domains.map((domain, i) => (
-              <Card
-                key={domain.key}
-                eyebrow={`Domain 0${i + 1}`}
-                title={domain.label}
-                to={domain.to}
-                linkLabel="Learn More"
-                accent={i % 3 === 0 ? "primary" : i % 3 === 1 ? "sky" : "gold"}
-              >
-                <ImagePlaceholder label="Image Placeholder" ratio="3/2" className="mb-4" />
-                {domain.summary}
-              </Card>
-            ))}
+            {domains.map((domain, i) => {
+              const image = domainImages[domain.key];
+              return (
+                <Card
+                  key={domain.key}
+                  eyebrow={`Domain 0${i + 1}`}
+                  title={domain.label}
+                  to={domain.to}
+                  linkLabel="Learn More"
+                  accent={i % 3 === 0 ? "primary" : i % 3 === 1 ? "sky" : "gold"}
+                >
+                  {image && (
+                    <div className="relative mb-4 aspect-[3/2] overflow-hidden rounded-xl">
+                      <img
+                        src={image}
+                        alt=""
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  {domain.summary}
+                </Card>
+              );
+            })}
           </div>
         </ContentSection>
 
