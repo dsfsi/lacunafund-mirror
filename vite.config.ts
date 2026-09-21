@@ -27,6 +27,12 @@ export default defineConfig({
       { path: "/governance/steering-committee" },
       { path: "/governance/technical-advisory-panels" },
     ],
-    prerender: { enabled: true, autoStaticPathsDiscovery: false },
+    prerender: {
+      enabled: true,
+      autoStaticPathsDiscovery: false,
+      // Every HTML page is listed above; do not try to prerender linked files
+      // such as PDFs as if they were application routes.
+      crawlLinks: false,
+    },
   },
 });
