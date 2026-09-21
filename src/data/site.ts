@@ -244,11 +244,11 @@ export const governance = {
     },
     {
       label: "Conflict of Interest Policy",
-      url: "https://www.dsfsi.co.za/lacunafund-mirror/wp-content/uploads/sites/11/2024/04/COI-Policy_LacunaFund.pdf",
+      url: "/reports/conflict-of-interest-policy.pdf",
     },
     {
       label: "Intellectual Property Policy",
-      url: "https://www.dsfsi.co.za/lacunafund-mirror/wp-content/uploads/sites/11/2024/04/IP-Policy_LacunaFund.pdf",
+      url: "/reports/intellectual-property-policy.pdf",
     },
   ],
 };
