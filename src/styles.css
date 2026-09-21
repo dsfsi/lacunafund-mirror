@@ -1,0 +1,276 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Lacuna Fund design system.
+ * Brand palette derived from the organisation logo:
+ *   sky      - light blue highlights
+ *   brand    - green, primary interactive accent
+ *   gold     - warm yellow, sparing emphasis
+ *   navy     - dark navy structure
+ * Dark mode is the default theme.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-sky: var(--sky);
+  --color-sky-foreground: var(--sky-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --shadow-soft: 0 1px 0 0 color-mix(in oklab, white 6%, transparent),
+    0 18px 40px -24px oklch(0.1 0.05 250 / 0.7);
+  --shadow-glow: 0 0 0 1px color-mix(in oklab, var(--primary) 35%, transparent),
+    0 20px 50px -28px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+/* Dark theme = default */
+:root,
+.dark {
+  --radius: 0.85rem;
+  --background: oklch(0.19 0.024 254);
+  --foreground: oklch(0.965 0.008 250);
+  --surface: oklch(0.235 0.028 254);
+  --surface-raised: oklch(0.275 0.032 254);
+  --card: oklch(0.235 0.028 254);
+  --card-foreground: oklch(0.965 0.008 250);
+  --popover: oklch(0.235 0.028 254);
+  --popover-foreground: oklch(0.965 0.008 250);
+  --primary: oklch(0.75 0.16 163);
+  --primary-foreground: oklch(0.17 0.03 254);
+  --secondary: oklch(0.3 0.035 254);
+  --secondary-foreground: oklch(0.95 0.01 250);
+  --muted: oklch(0.29 0.03 254);
+  --muted-foreground: oklch(0.74 0.025 252);
+  --accent: oklch(0.32 0.05 250);
+  --accent-foreground: oklch(0.96 0.01 250);
+  --destructive: oklch(0.63 0.2 25);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --border: oklch(0.36 0.032 252 / 0.6);
+  --input: oklch(0.36 0.032 252 / 0.8);
+  --ring: oklch(0.75 0.16 163);
+  --sky: oklch(0.78 0.13 232);
+  --sky-foreground: oklch(0.18 0.03 254);
+  --gold: oklch(0.83 0.15 85);
+  --gold-foreground: oklch(0.2 0.03 254);
+  --navy: oklch(0.25 0.06 258);
+  --navy-foreground: oklch(0.96 0.01 250);
+  --sidebar: oklch(0.165 0.026 256);
+  --sidebar-foreground: oklch(0.9 0.012 250);
+  --sidebar-border: oklch(0.32 0.03 252 / 0.7);
+  --sidebar-accent: oklch(0.27 0.035 254);
+  --sidebar-accent-foreground: oklch(0.97 0.008 250);
+}
+
+.light {
+  --background: oklch(0.985 0.005 250);
+  --foreground: oklch(0.22 0.035 256);
+  --surface: oklch(1 0 0);
+  --surface-raised: oklch(0.975 0.008 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.035 256);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.035 256);
+  --primary: oklch(0.56 0.13 163);
+  --primary-foreground: oklch(0.99 0.005 250);
+  --secondary: oklch(0.95 0.012 250);
+  --secondary-foreground: oklch(0.25 0.035 256);
+  --muted: oklch(0.945 0.012 250);
+  --muted-foreground: oklch(0.48 0.03 254);
+  --accent: oklch(0.93 0.03 232);
+  --accent-foreground: oklch(0.24 0.04 256);
+  --border: oklch(0.88 0.015 250);
+  --input: oklch(0.86 0.02 250);
+  --ring: oklch(0.56 0.13 163);
+  --sky: oklch(0.6 0.13 232);
+  --sky-foreground: oklch(0.99 0.005 250);
+  --gold: oklch(0.72 0.14 78);
+  --gold-foreground: oklch(0.2 0.03 254);
+  --navy: oklch(0.28 0.06 258);
+  --navy-foreground: oklch(0.98 0.008 250);
+  --sidebar: oklch(0.99 0.004 250);
+  --sidebar-foreground: oklch(0.26 0.035 256);
+  --sidebar-border: oklch(0.89 0.015 250);
+  --sidebar-accent: oklch(0.94 0.02 232);
+  --sidebar-accent-foreground: oklch(0.22 0.04 256);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility grid-backdrop {
+  background-image:
+    radial-gradient(
+      ellipse 80% 60% at 15% -10%,
+      color-mix(in oklab, var(--sky) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 90% 0%,
+      color-mix(in oklab, var(--primary) 14%, transparent),
+      transparent 70%
+    );
+}
+
+@utility accent-rule {
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--sky) 45%,
+    var(--gold) 100%
+  );
+}
+
+@utility card-surface {
+  background: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--surface-raised) 92%, transparent),
+    var(--surface)
+  );
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Soft coloured halo around a card (replaces left accent lines) */
+@utility halo-primary {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 30%, transparent),
+    0 0 28px -6px color-mix(in oklab, var(--primary) 32%, transparent),
+    var(--shadow-soft);
+  transition: box-shadow 300ms ease;
+
+  &:hover {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--primary) 55%, transparent),
+      0 0 40px -4px color-mix(in oklab, var(--primary) 45%, transparent),
+      var(--shadow-soft);
+  }
+}
+
+@utility halo-sky {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--sky) 30%, transparent),
+    0 0 28px -6px color-mix(in oklab, var(--sky) 32%, transparent),
+    var(--shadow-soft);
+  transition: box-shadow 300ms ease;
+
+  &:hover {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--sky) 55%, transparent),
+      0 0 40px -4px color-mix(in oklab, var(--sky) 45%, transparent),
+      var(--shadow-soft);
+  }
+}
+
+@utility halo-gold {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--gold) 30%, transparent),
+    0 0 28px -6px color-mix(in oklab, var(--gold) 32%, transparent),
+    var(--shadow-soft);
+  transition: box-shadow 300ms ease;
+
+  &:hover {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--gold) 55%, transparent),
+      0 0 40px -4px color-mix(in oklab, var(--gold) 45%, transparent),
+      var(--shadow-soft);
+  }
+}
+
+
+@utility prose-body {
+  color: var(--muted-foreground);
+  line-height: 1.75;
+
+  & a {
+    color: var(--sky);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--sky) 45%, transparent);
+    text-underline-offset: 3px;
+  }
+
+  & a:hover {
+    color: var(--primary);
+  }
+
+  & strong {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+}
+
+/* Google Translate widget: hide its injected banner/tooltip chrome */
+.goog-te-banner-frame,
+.skiptranslate iframe,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}
+font font {
+  background: none !important;
+  box-shadow: none !important;
+}
