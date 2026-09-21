@@ -1,27 +1,20 @@
-name: Deploy static content to Github Pages
+name: Deploy Lacuna Fund site to GitHub Pages
 
 on:
-  
   push:
-      branches: ["master"]
-
-  #manually run actions from git
+    branches: ["master"]
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
-
-# allows the workflow to be triggered by a deployment event
 
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
- 
   deploy:
     environment:
       name: github-pages
@@ -30,20 +23,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build the site
+        run: bun run build
+
+      - name: Set up GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Create site directory
-        run: |
-          # Create _site directory for deployment
-          mkdir -p _site
-          # Copy the lacunafund.org content to root of _site
-          cp -r lacunafund-httrack-backup/lacunafund.org/* _site/
-          
-      - name: Upload artifact
+
+      - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the _site directory with the correct structure
-          path: '_site'
+          path: .output/public
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
