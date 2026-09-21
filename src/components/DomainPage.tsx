@@ -7,8 +7,18 @@ import { DatasetList, type DatasetCategory, type DatasetEntry } from "@/componen
 import { domains } from "@/data/site";
 import datasets from "@/data/datasets.json";
 import { useGoogleSheetDatasets } from "@/lib/google-sheet-datasets";
+import agri2Image from "@/assets/agri2.jpg";
+import health2Image from "@/assets/health2.jpg";
+import climate2Image from "@/assets/climate2.jpg";
+import lang2Image from "@/assets/lang2.jpg";
 
 const byDomain = datasets as Record<string, DatasetEntry[]>;
+const domainImages: Record<string, string> = {
+  agriculture: agri2Image,
+  health: health2Image,
+  climate: climate2Image,
+  language: lang2Image,
+};
 
 function countAuthors(entries: DatasetEntry[]) {
   const names = new Set<string>();
@@ -33,6 +43,7 @@ export function DomainPage({ domainKey }: { domainKey: string }) {
   const entries = liveEntries.filter((entry) => entry.category === domainKey);
   const featured = entries[0];
   const authors = countAuthors(entries);
+  const image = domainImages[domainKey];
 
   return (
     <AppShell>
@@ -41,7 +52,15 @@ export function DomainPage({ domainKey }: { domainKey: string }) {
         title={domain.label}
         intro={domain.summary}
         crumbs={[{ label: "Datasets", to: "/datasets" }, { label: domain.label }]}
-        aside={<ImagePlaceholder label="Image Placeholder" ratio="3/2" />}
+        aside={
+          image && (
+            <ImagePlaceholder
+              src={image}
+              alt={`${domain.label} dataset imagery`}
+              ratio="3/2"
+            />
+          )
+        }
       >
         <StatGrid
           items={[

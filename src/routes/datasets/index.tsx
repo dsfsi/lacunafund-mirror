@@ -3,17 +3,27 @@ import { CalendarClock } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { BasePage } from "@/components/BasePage";
 import { DatasetList, type DatasetCategory, type DatasetEntry } from "@/components/DatasetList";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Card, ContentSection, InfoPanel, StatGrid } from "@/components/ui-kit";
 import { domains } from "@/data/site";
 import datasets from "@/data/datasets.json";
 import { useGoogleSheetDatasets } from "@/lib/google-sheet-datasets";
 import { socialMeta } from "@/lib/seo";
+import agri2Image from "@/assets/agri2.jpg";
+import health2Image from "@/assets/health2.jpg";
+import climate2Image from "@/assets/climate2.jpg";
+import lang2Image from "@/assets/lang2.jpg";
 
 const datasetGroups = datasets as Record<string, DatasetEntry[]>;
 const fallbackDatasets = Object.entries(datasetGroups).flatMap(([category, entries]) =>
   entries.map((entry) => ({ ...entry, category: category as DatasetCategory })),
 );
+
+const domainImages: Record<string, string> = {
+  agriculture: agri2Image,
+  health: health2Image,
+  climate: climate2Image,
+  language: lang2Image,
+};
 
 export const Route = createFileRoute("/datasets/")({
   head: () => ({
@@ -77,23 +87,35 @@ function DatasetsPage() {
 
         <ContentSection eyebrow="Domains" title="Choose a domain">
           <div className="grid gap-5 sm:grid-cols-2">
-            {domains.map((domain, i) => (
-              <Card
-                key={domain.key}
-                eyebrow={
-                  counts[domain.key]
-                    ? `${counts[domain.key] ?? 0} released datasets`
-                    : "Grantmaking underway"
-                }
-                title={domain.label}
-                to={domain.to}
-                linkLabel="Explore datasets"
-                accent={i % 3 === 0 ? "primary" : i % 3 === 1 ? "sky" : "gold"}
-              >
-                <ImagePlaceholder label="Image Placeholder" ratio="3/2" className="mb-4" />
-                {domain.summary}
-              </Card>
-            ))}
+            {domains.map((domain, i) => {
+              const image = domainImages[domain.key];
+              return (
+                <Card
+                  key={domain.key}
+                  eyebrow={
+                    counts[domain.key]
+                      ? `${counts[domain.key] ?? 0} released datasets`
+                      : "Grantmaking underway"
+                  }
+                  title={domain.label}
+                  to={domain.to}
+                  linkLabel="Explore datasets"
+                  accent={i % 3 === 0 ? "primary" : i % 3 === 1 ? "sky" : "gold"}
+                >
+                  {image && (
+                    <div className="relative mb-4 aspect-[3/2] overflow-hidden rounded-xl">
+                      <img
+                        src={image}
+                        alt=""
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  {domain.summary}
+                </Card>
+              );
+            })}
           </div>
         </ContentSection>
 
