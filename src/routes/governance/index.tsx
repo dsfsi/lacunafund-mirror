@@ -44,6 +44,7 @@ function GovernancePage() {
         crumbs={[{ label: "Governance" }]}
       >
         <ContentSection
+          id="guiding-principles"
           eyebrow="Principles"
           title="Guiding Principles"
           description={governance.principlesIntro}

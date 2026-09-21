@@ -136,6 +136,7 @@ export function Sidebar({
                         <li key={child.to + child.label}>
                           <Link
                             to={child.to}
+                            hash={child.hash}
                             onClick={onCloseMobile}
                             className={cn(
                               "block rounded-md px-2 py-1.5 text-[13px] transition-colors",

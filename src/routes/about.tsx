@@ -132,7 +132,7 @@ function AboutPage() {
           </div>
         </ContentSection>
 
-        <ContentSection eyebrow="Grantmaking" title="Our Grantmaking">
+        <ContentSection id="grantmaking" eyebrow="Grantmaking" title="Our Grantmaking">
           <div className="space-y-4">
             {about.grantmaking.map((p) => (
               <p key={p.slice(0, 24)} className="prose-body text-[15px]">

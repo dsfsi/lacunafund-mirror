@@ -14,7 +14,7 @@ export type NavItem = {
   label: string;
   to: string;
   icon: string;
-  children?: { label: string; to: string }[];
+  children?: { label: string; to: string; hash?: string }[];
 };
 
 export const navigation: NavItem[] = [
@@ -24,8 +24,8 @@ export const navigation: NavItem[] = [
     to: "/about",
     icon: "info",
     children: [
-      { label: "Guiding Principles", to: "/governance" },
-      { label: "Our Grantmaking", to: "/apply" },
+      { label: "Guiding Principles", to: "/governance", hash: "guiding-principles" },
+      { label: "Our Grantmaking", to: "/about", hash: "grantmaking" },
     ],
   },
   {
