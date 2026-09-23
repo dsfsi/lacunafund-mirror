@@ -4,53 +4,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-This is a static HTTrack mirror/backup of the Lacuna Fund website (lacunafund.org), served via GitHub Pages. It exists as a fallback in case the primary lacunafund.org site goes down. The repo is scaffolded from the [cookiecutter data science](https://drivendata.github.io/cookiecutter-data-science/) template, but almost none of that data-science tooling (`src/data`, `src/features`, `src/models`, `src/visualization`) is actually used — those files are empty stubs left over from the template. The one real piece of `src/` is `src/banner_manager.py`, which injects/removes a "this is a backup site" banner into every mirrored HTML page.
+This repo is the live, official Lacuna Fund website (lacunafund.org), deployed via GitHub Pages. It's a TanStack Start / React / TypeScript app built with [Lovable](https://lovable.dev), styled with Tailwind CSS and shadcn/ui (`components.json`, "new-york" style). It was previously a static HTTrack mirror/backup of an older site; that entire mirror (`lacunafund-httrack-backup/`, `src/banner_manager.py`, the cookiecutter-data-science scaffolding) was fully replaced by this rebuild — don't look for or recreate any of that.
 
-Key paths:
-- `lacunafund-httrack-backup/lacunafund.org/` — the mirrored site content (one directory per page, HTTrack output). This is what actually gets deployed.
-- `lacunafund-httrack-backup/banners/` — the three banner HTML components (`banner_component.html` en, `banner_component_fr.html` fr, `banner_component_es.html` es) that get injected into every page in the mirror.
-- `src/banner_manager.py` — CLI/module for inserting/removing those banners across the mirrored HTML tree.
-- `CNAME` — GitHub Pages custom domain file (currently `lacunafund.org`).
-- `.github/workflows/github-pages.yml` — deploy workflow.
-- `data/external/` — zipped source snapshots of the site/backup (not the live mirror).
-- `old-dns/` — historical DNS screenshots, reference only.
+The site is **fully static at runtime**: no backend, no database, no server-side APIs. All content lives in `src/data/site.ts` (nav, page copy, links) and `src/data/datasets.json` (the dataset catalogue), bundled at build time. Every route is prerendered to static HTML (see `pages` list in `vite.config.ts`).
+
+## Leftover, unused files
+
+`data/`, `data_statement.md`, `docs/` (Sphinx), `reports/` (top-level), `requirements.txt`, `setup.py`, `old-dns/` are all leftovers from the previous Python/cookiecutter-data-science repo. Nothing in the current app references them — the site's actual PDFs live in `public/reports/` and are referenced from `src/data/site.ts`. Don't assume these old paths are load-bearing; they're candidates for cleanup, not documentation.
+
+## Commands
+
+```bash
+bun install            # install deps (bun is the package manager — bun.lock is authoritative)
+bun run dev             # vite dev server
+bun run build           # production build; prerenders every route to static HTML
+bun run preview         # preview the production build
+bun run lint             # eslint .
+bun run format           # prettier --write .
+```
+
+There is no test suite in this repo.
+
+## Architecture
+
+- **Routing**: TanStack Start file-based routing under `src/routes/`. Every `.tsx` file there is a route; `src/routes/__root.tsx` is the app shell (see `src/routes/README.md` for the file-naming conventions — dynamic `$id`, splat `$`, layout `_layout`, etc.). `src/routeTree.gen.ts` is auto-generated — never hand-edit it.
+- **Content**: `src/data/site.ts` holds nav structure and all page copy/links (edit this, not the components, for copy changes). `src/data/datasets.json` holds the static dataset catalogue actually shipped in the build.
+- **Live dataset sync**: `src/lib/google-sheet-datasets.ts` can pull dataset rows live from a Google Sheet (`gviz` JSON endpoint, hardcoded `spreadsheetId`/`sheetId`) and categorizes each row into agriculture/health/language/climate via keyword regex matching on its text fields. Check whether a given dataset page uses this live fetch or the static `datasets.json` before assuming one or the other is authoritative.
+- **i18n**: `src/i18n/en.ts` is the source-of-truth English copy bundle; the comment there says other locales (es/fr/sw) should mirror its shape, but only `en.ts` currently exists. Runtime language switching (`src/components/LanguageSwitcher.tsx`) works via the **Google Translate widget** (cookie-based, `googtrans` cookie), not per-locale content files — so don't assume adding an `es.ts`/`fr.ts` file alone would change what's rendered; the switcher needs wiring to actually use it.
+- **UI kit**: shadcn/ui components live in `src/components/ui/` (generated, style "new-york", Tailwind, `@/` path alias to `src/`). `src/components/ui-kit.tsx` and `src/components/AppShell.tsx`/`BasePage.tsx`/`DomainPage.tsx` are the higher-level page-layout primitives most routes build on.
+- **Error handling**: `src/server.ts` wraps the TanStack Start server entry to catch and normalize SSR errors (including ones h3 would otherwise swallow into a bare 500 JSON body) into a rendered error page (`src/lib/error-page.ts`). `src/start.ts` defines request middleware (error handling + CSRF protection for server functions) — it's required for CSRF protection to stay active; don't delete it.
 
 ## Deployment
 
-GitHub Actions (`.github/workflows/github-pages.yml`) deploys automatically on push to `master`, or via manual `workflow_dispatch`. The workflow copies `lacunafund-httrack-backup/lacunafund.org/*` into a `_site/` directory and publishes that to GitHub Pages — nothing else in the repo is deployed. There is no build step; the HTML in `lacunafund-httrack-backup/lacunafund.org/` is served as-is.
-
-## Updating the backup banner
-
-The banner (shown at the top of every mirrored page, stating the backup date) is managed with `src/banner_manager.py`. Banners are wrapped in `<!-- BANNER_START -->` / `<!-- BANNER_END -->` markers and inserted right after `<body>`.
-
-To change the backup date shown in the banner: edit the date string (`This is a backup site current up to DD/MM/YYYY`) in each of the three banner component files under `lacunafund-httrack-backup/banners/`, then reinsert:
-
-```bash
-# from src/, pointing --path at the mirror root (parent of banners/)
-# Step 1: remove existing banners first (all languages, or one at a time)
-python banner_manager.py --action remove_all --path ../lacunafund-httrack-backup
-
-# Step 2: insert updated banners, once per language
-python banner_manager.py --action insert --language en --path ../lacunafund-httrack-backup
-python banner_manager.py --action insert --language fr --path ../lacunafund-httrack-backup
-python banner_manager.py --action insert --language es --path ../lacunafund-httrack-backup
-
-# add --dry-run to simulate without writing files
-```
-
-`--path` must point at the directory containing `banners/` (i.e. `lacunafund-httrack-backup/`, not `lacunafund.org/` inside it) — `banner_manager.py` resolves `banners/banner_component*.html` and the page glob patterns (`**/index.html`, `**/fr/**/*.html`, `**/es/**/*.html`, etc.) relative to that root. Language routing to pages is pattern-based (see `LANGUAGE_PATTERNS` in `banner_manager.py`), not driven by a sitemap.
-
-Can also be driven as a module: `from banner_manager import manage_banners; manage_banners(path, action, language, dry_run)`.
-
-## Environment
-
-```bash
-python setup.py install
-pip install -r requirements.txt
-```
-
-Requires Python 3.11.3. There is no test suite in this repo currently.
+`.github/workflows/github-pages.yml` deploys on push to `master` (or manual `workflow_dispatch`): `bun install --frozen-lockfile` → `bun run build` → upload `.output/public` as the Pages artifact → `actions/deploy-pages@v4`. `DEPLOY.md` documents the general static-export process (including base-path config for non-custom-domain GitHub Pages URLs) but references a `dist` output dir — the actual CI workflow uses `.output/public`; trust the workflow over `DEPLOY.md` if they disagree.
 
 ## DNS / custom domain
 
-`lacunafund.org` is the custom domain (see `CNAME`), managed at easyDNS. The apex (`@`) and `www` GitHub Pages DNS records must satisfy GitHub's Pages custom-domain validation (A/AAAA for apex, CNAME for `www`) — check `https://github.com/dsfsi/lacunafund-mirror/settings/pages` for current domain verification status if the site appears down.
+`lacunafund.org` is the custom domain (see `CNAME`), managed at easyDNS (registrar and DNS host). The apex (`@`) and `www` GitHub Pages DNS records must satisfy GitHub's Pages custom-domain validation (A/AAAA for apex, CNAME for `www`) — check `https://github.com/dsfsi/lacunafund-mirror/settings/pages` for current domain verification status if the site appears down. There is also a dormant, inactive Cloudflare zone for this domain (leftover from an earlier, abandoned Cloudflare Pages attempt) — the domain's real nameservers point at easyDNS, not Cloudflare, and that's intentional.
