@@ -49,7 +49,12 @@ export const navigation: NavItem[] = [
       { label: "Climate", to: "/datasets/climate" },
     ],
   },
-  { label: "Apply", to: "/apply", icon: "send" },
+  {
+    label: "Apply",
+    to: "/apply",
+    icon: "send",
+    children: [{ label: "Open RFP", to: "/sdg-dataset-utilization-rfp" }],
+  },
 ];
 
 export const home = {
@@ -378,4 +383,53 @@ export const apply = {
       body: "Datasets are locally owned and openly accessible, and panels distill learnings from the funding process for future funding considerations.",
     },
   ],
+};
+
+export const sdgDatasetUtilizationRfp = {
+  title: "Advancing SDG outcomes through Lacuna Fund's open datasets",
+  intro:
+    "Funding for Global South teams to train, scale, and apply machine learning models using Lacuna Fund's open datasets.",
+  registrationUrl:
+    "https://us06web.zoom.us/webinar/register/WN_Xkw_Lm5-TyC3kNY70VJIFg#/registration",
+  rfpUrl: "https://acts-net.org/wp-content/uploads/RFP_Lacuna_Fund.pdf",
+  summary:
+    "Lacuna Fund and the African Centre for Technology Studies (ACTS), with support from Wellcome Trust, invite proposals that turn existing Lacuna Fund datasets into equitable, high-value machine learning models, applications, and tools.",
+  facts: [
+    ["Implementing partner", "African Centre for Technology Studies (ACTS)"],
+    ["Funding", "Up to USD 30,000 — three awards of up to USD 10,000 each"],
+    ["Eligible applicants", "Researchers and research teams in Global South LMICs"],
+    ["Implementation period", "December 2026 – May 2027"],
+  ],
+  eligibility: [
+    "Non-profit entities, research institutions, for-profit social enterprises, or teams of these organisations. Individuals must apply through an institutional sponsor.",
+    "Lead applicants must be headquartered in a low- or middle-income country in the Global South. Institutions outside eligible regions may participate as partners.",
+    "Applicants must demonstrate, directly or through a partnership, competency in machine learning and in their proposed SDG domain.",
+    "Applicants must have, or be able to obtain, the national and other approvals needed to conduct the work.",
+  ],
+  uses: [
+    "Train and deploy a new ML model using existing Lacuna Fund datasets.",
+    "Scale or fine-tune an existing model for a local or regional context.",
+    "Build decision-support tools, predictive applications, APIs, dashboards, or data visualisations.",
+    "Develop baseline models or use datasets to train future data-science professionals.",
+  ],
+  criteria: [
+    "Quality and domain competency",
+    "Transformational impact and equity",
+    "Participatory approach and ethics",
+    "Sustainability, communications, feasibility, and accessibility",
+  ],
+  timeline: [
+    ["RFP opens", "14 September 2026"],
+    ["Applicant webinar", "15 October 2026"],
+    ["Questions due", "28 October 2026"],
+    ["Answers posted", "4 November 2026"],
+    ["Full proposals due", "13 November 2026"],
+    ["Awards announced", "By the end of November 2026"],
+    ["Implementation commences", "1 December 2026"],
+    ["Final reports and outputs published", "May 2027"],
+  ],
+  application:
+    "Proposals may be submitted in English, Spanish, French, or Portuguese. All projects must use one or more datasets from the Lacuna Fund catalogue and deliver at least a pilot-stage minimum viable product. Outputs should be openly licensed and accompanied by clear documentation, including a model card or equivalent.",
+  questions:
+    "Send RFP questions to s.wanjau@acts-net.org with “SDG Dataset Utilization RFP 2026 Question” in the subject line. Questions received by 28 October will be de-identified and answered publicly on the ACTS website by 4 November.",
 };
