@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, FileText } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { BasePage } from "@/components/BasePage";
-import { Card, ContentSection, InfoPanel } from "@/components/ui-kit";
+import { Button, Card, ContentSection, InfoPanel } from "@/components/ui-kit";
 import { apply, domains, governance } from "@/data/site";
 import { socialMeta } from "@/lib/seo";
 
@@ -36,6 +36,22 @@ function ApplyPage() {
         intro={apply.intro}
         crumbs={[{ label: "Apply" }]}
       >
+        <ContentSection eyebrow="Open opportunity" title="Use Lacuna Fund's open datasets">
+          <InfoPanel title="Advancing SDG outcomes through open datasets" tone="gold">
+            Funding is available for Global South teams to train, scale, and apply ML models using
+            Lacuna Fund datasets. Full proposals are due 13 November 2026.
+            <div className="mt-4">
+              <Button
+                to="/sdg-dataset-utilization-rfp"
+                size="sm"
+                className="!text-white hover:!text-white"
+              >
+                View the RFP
+              </Button>
+            </div>
+          </InfoPanel>
+        </ContentSection>
+
         <ContentSection eyebrow="Domain areas" title="Where we grant">
           <div className="grid gap-5 sm:grid-cols-2">
             {domains.map((domain, i) => (
@@ -73,7 +89,10 @@ function ApplyPage() {
               </h3>
               <ul className="mt-4 space-y-3">
                 {apply.requirements.map((item) => (
-                  <li key={item.slice(0, 20)} className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <li
+                    key={item.slice(0, 20)}
+                    className="flex items-start gap-3 text-sm text-muted-foreground"
+                  >
                     <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-sky" aria-hidden />
                     {item}
                   </li>

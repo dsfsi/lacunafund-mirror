@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ApplyRouteImport } from './routes/apply'
+import { Route as SdgDatasetUtilizationRfpRouteImport } from './routes/sdg-dataset-utilization-rfp'
 import { Route as DatasetsIndexRouteImport } from './routes/datasets/index'
 import { Route as DatasetsAgricultureRouteImport } from './routes/datasets/agriculture'
 import { Route as DatasetsClimateRouteImport } from './routes/datasets/climate'
@@ -37,6 +38,12 @@ const ApplyRoute = ApplyRouteImport.update({
   path: '/apply',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SdgDatasetUtilizationRfpRoute =
+  SdgDatasetUtilizationRfpRouteImport.update({
+    id: '/sdg-dataset-utilization-rfp',
+    path: '/sdg-dataset-utilization-rfp',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DatasetsIndexRoute = DatasetsIndexRouteImport.update({
   id: '/datasets/',
   path: '/datasets/',
@@ -89,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
+  '/sdg-dataset-utilization-rfp': typeof SdgDatasetUtilizationRfpRoute
   '/datasets/agriculture': typeof DatasetsAgricultureRoute
   '/datasets/climate': typeof DatasetsClimateRoute
   '/datasets/health': typeof DatasetsHealthRoute
@@ -103,6 +111,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
+  '/sdg-dataset-utilization-rfp': typeof SdgDatasetUtilizationRfpRoute
   '/datasets/agriculture': typeof DatasetsAgricultureRoute
   '/datasets/climate': typeof DatasetsClimateRoute
   '/datasets/health': typeof DatasetsHealthRoute
@@ -118,6 +127,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
+  '/sdg-dataset-utilization-rfp': typeof SdgDatasetUtilizationRfpRoute
   '/datasets/agriculture': typeof DatasetsAgricultureRoute
   '/datasets/climate': typeof DatasetsClimateRoute
   '/datasets/health': typeof DatasetsHealthRoute
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/apply'
+    | '/sdg-dataset-utilization-rfp'
     | '/datasets/agriculture'
     | '/datasets/climate'
     | '/datasets/health'
@@ -148,6 +159,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/apply'
+    | '/sdg-dataset-utilization-rfp'
     | '/datasets/agriculture'
     | '/datasets/climate'
     | '/datasets/health'
@@ -162,6 +174,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/apply'
+    | '/sdg-dataset-utilization-rfp'
     | '/datasets/agriculture'
     | '/datasets/climate'
     | '/datasets/health'
@@ -177,6 +190,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ApplyRoute: typeof ApplyRoute
+  SdgDatasetUtilizationRfpRoute: typeof SdgDatasetUtilizationRfpRoute
   DatasetsAgricultureRoute: typeof DatasetsAgricultureRoute
   DatasetsClimateRoute: typeof DatasetsClimateRoute
   DatasetsHealthRoute: typeof DatasetsHealthRoute
@@ -209,6 +223,13 @@ declare module '@tanstack/react-router' {
       path: '/apply'
       fullPath: '/apply'
       preLoaderRoute: typeof ApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sdg-dataset-utilization-rfp': {
+      id: '/sdg-dataset-utilization-rfp'
+      path: '/sdg-dataset-utilization-rfp'
+      fullPath: '/sdg-dataset-utilization-rfp'
+      preLoaderRoute: typeof SdgDatasetUtilizationRfpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/datasets/': {
@@ -281,6 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ApplyRoute: ApplyRoute,
+  SdgDatasetUtilizationRfpRoute: SdgDatasetUtilizationRfpRoute,
   DatasetsAgricultureRoute: DatasetsAgricultureRoute,
   DatasetsClimateRoute: DatasetsClimateRoute,
   DatasetsHealthRoute: DatasetsHealthRoute,

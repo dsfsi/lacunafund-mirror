@@ -98,7 +98,8 @@ export function Sidebar({
           <ul className="space-y-1">
             {navigation.map((item) => {
               const Icon = icons[item.icon] ?? Home;
-              const active = isActive(item.to);
+              const active =
+                isActive(item.to) || item.children?.some((child) => isActive(child.to));
               return (
                 <li key={item.label}>
                   <Link
