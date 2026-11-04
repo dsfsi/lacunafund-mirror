@@ -40,4 +40,10 @@ Push to `master` triggers `.github/workflows/github-pages.yml`: `bun install --f
 
 ## DNS
 
-`lacunafund.org` is managed at easyDNS (registrar + DNS host). GitHub Pages custom-domain validation requires A/AAAA on the apex and a CNAME on `www` — check `https://github.com/dsfsi/lacunafund-mirror/settings/pages` if domain issues come up. A separate, inactive Cloudflare zone for this domain exists but is intentionally dormant (leftover from an abandoned earlier hosting attempt) — the domain's real nameservers point at easyDNS.
+Registrar and DNS host are split, on purpose:
+
+- **Registrar: easyDNS.** Registration ("Domain Plus with .ORG Registration") is prepaid through 11-May-2030 — don't touch it.
+- **DNS host: Cloudflare** (free plan), as of November 2026. Moved from easyDNS because easyDNS's free query cap (250,000/month) was being blown through by 10-50x (8-13M queries/month starting right after the site relaunch) — implausible as organic traffic, likely abuse, and billed as overages regardless of cause. Cloudflare's free plan doesn't meter DNS query volume, so hosting DNS there removes the billing exposure.
+- Records mirror the old easyDNS zone exactly (4×A + 4×AAAA apex → GitHub Pages IPs, `CNAME www → www.dsfsi.co.za`, 2× `_acme-challenge` TXT), all set to **DNS only** (not proxied), so GitHub Pages custom-domain validation sees the same records as before. Don't flip these to proxied (orange cloud) without checking it doesn't break that validation.
+
+GitHub Pages custom-domain validation requires A/AAAA on the apex and a CNAME on `www` — check `https://github.com/dsfsi/lacunafund-mirror/settings/pages` if domain issues come up.
