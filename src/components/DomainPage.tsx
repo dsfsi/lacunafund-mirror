@@ -3,16 +3,14 @@ import { AppShell } from "@/components/AppShell";
 import { BasePage } from "@/components/BasePage";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Card, ContentSection, InfoPanel, StatGrid } from "@/components/ui-kit";
-import { DatasetList, type DatasetCategory, type DatasetEntry } from "@/components/DatasetList";
+import { DatasetList, type DatasetEntry } from "@/components/DatasetList";
 import { domains } from "@/data/site";
-import datasets from "@/data/datasets.json";
-import { useGoogleSheetDatasets } from "@/lib/google-sheet-datasets";
+import { fundedDatasetDomains, fundedDatasetEntries } from "@/data/funded-dataset-domains.generated";
 import agri2Image from "@/assets/agri2.jpg";
 import health2Image from "@/assets/health2.jpg";
 import climate2Image from "@/assets/climate2.jpg";
 import lang2Image from "@/assets/lang2.jpg";
 
-const byDomain = datasets as Record<string, DatasetEntry[]>;
 const domainImages: Record<string, string> = {
   agriculture: agri2Image,
   health: health2Image,
@@ -34,13 +32,20 @@ function countAuthors(entries: DatasetEntry[]) {
 }
 
 export function DomainPage({ domainKey }: { domainKey: string }) {
-  const domain = domains.find((d) => d.key === domainKey);
+  const staticDomain = domains.find((d) => d.key === domainKey);
+  const generatedDomain = fundedDatasetDomains.find((d) => d.key === domainKey);
+  const domain =
+    staticDomain ??
+    (generatedDomain && {
+      ...generatedDomain,
+      to: `/datasets/${generatedDomain.key}`,
+      summary: `Explore Lacuna Fund datasets in ${generatedDomain.label}.`,
+      datasetIntro: `This collection contains Lacuna Fund projects in ${generatedDomain.label}.`,
+    });
   if (!domain) return null;
-  const fallbackEntries = Object.entries(byDomain).flatMap(([category, domainEntries]) =>
-    domainEntries.map((entry) => ({ ...entry, category: category as DatasetCategory })),
-  );
-  const { entries: liveEntries } = useGoogleSheetDatasets(fallbackEntries);
-  const entries = liveEntries.filter((entry) => entry.category === domainKey);
+  const entries: DatasetEntry[] = fundedDatasetEntries
+    .filter((entry) => entry.category === domainKey)
+    .map((entry) => ({ ...entry, fields: [...entry.fields], body: [...entry.body] }));
   const featured = entries[0];
   const authors = countAuthors(entries);
   const image = domainImages[domainKey];

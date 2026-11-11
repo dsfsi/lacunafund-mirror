@@ -37,7 +37,7 @@
    "fields": [
     {
      "label": "Description",
-     "value": "This project built a remotely monitored and controlled Internet of Things (IoT) fish pond water quality management system for the generation of labeled datasets both for conventional ponds and the aquaponic pond systems."
+     "value": "This project built a remotely monitored and controlled Internet of Things (IoT) fish pond water quality management system for the generation of training and evaluation data for both conventional ponds and aquaponic pond systems."
     },
     {
      "label": "Authors",
@@ -171,7 +171,7 @@
    ],
    "body": [
     "CropHarvest increases the understanding of the main types of food production in Sub-Saharan Africa and can help inform decision-making around agricultural development, early warning systems, and regional trade.  It is a global, open-source remote sensing dataset for crop-type classification in Sub-Saharan Africa – specifically in Kenya, Mali, Togo, Rwanda, Uganda, Ethiopia, Malawi, Zambia, Tanzania, Namibia, Sudan, and Nigeria.",
-    "The team expanded on an existing dataset published in 2021 to now include the following: new labeled data points using Collect Earth Online, ground data for crop type mapping, street-level images, crowdsources labeled images, and price data. In addition, the Collect Earth Online data was randomly sampled to cover the entire country, filling critical data gaps in crop patterns and yields."
+    "The team expanded on an existing dataset published in 2021 to now include the following: new training and evaluation data points using Collect Earth Online, ground data for crop type mapping, street-level images, crowdsourced training and evaluation images, and price data. In addition, the Collect Earth Online data was randomly sampled to cover the entire country, filling critical data gaps in crop patterns and yields."
    ]
   },
   {
@@ -894,6 +894,30 @@
     "This dataset includes the translation of 1,897 news articles comprising 660,242 words from Portuguese to Emakhuwa, an indigenous language of Mozambique. Each article includes the news headline, content, and label for topic classification. For news topic classification, the articles were divided into three primary areas: training (1,337 articles), development (185 articles), and testing (375 articles). The articles were then further categorized by topic: politics, economy, culture, sports, health, society, and world news.",
     "The intended use cases for this dataset include topic classification, translation, and loanword recognition. To ensure that the dataset was representative, the team translated different categories of news articles and prioritized Mozambique-related news and articles, contributing to lexicon diversity. The datasets have shown promising outcomes when fine-tuning multilingual models like ByT5, M2M100, and NLLB200. This team’s work has already generated improvements in translation quality when using loanword information as additional data. They plan to continue refining models and ensuring high-quality outputs for all use cases.",
     "_All Lacuna Fund datasets are licensed under the CC-BY 4.0 International license unless otherwise noted._"
+   ]
+  },
+  {
+   "title": "AfriScience-MT",
+   "fields": [
+    {
+     "label": "Description",
+     "value": "AfriScience-MT is a parallel corpus and single-CLI machine-translation framework for translating scientific text between English and six African languages. It supports work to expand scientific terminology in African languages and make science more accessible across the continent."
+    },
+    {
+     "label": "Languages",
+     "value": "English, Amharic, Hausa, Luganda, Northern Sotho, Yorùbá, isiZulu"
+    },
+    {
+     "label": "Dataset",
+     "value": "[Access AfriScience-MT on GitHub](https://github.com/masakhane-io/afriscience_mt)"
+    },
+    {
+     "label": "Research paper",
+     "value": "[AfriScience-MT: Towards Decolonizing Science in Africa through Text Translation](https://aclanthology.org/2026.emnlp-main.757/)"
+    }
+   ],
+   "body": [
+    "The framework provides a unified command-line interface and harmonized result schemas for machine-translation experiments, including zero-shot and sequence-to-sequence approaches."
    ]
   }
  ],

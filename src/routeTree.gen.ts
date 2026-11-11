@@ -12,8 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ApplyRouteImport } from './routes/apply'
-import { Route as SdgDatasetUtilizationRfpRouteImport } from './routes/sdg-dataset-utilization-rfp'
+import { Route as RfpRouteImport } from './routes/rfp'
 import { Route as DatasetsIndexRouteImport } from './routes/datasets/index'
+import { Route as DatasetsDomainRouteImport } from './routes/datasets/$domain'
 import { Route as DatasetsAgricultureRouteImport } from './routes/datasets/agriculture'
 import { Route as DatasetsClimateRouteImport } from './routes/datasets/climate'
 import { Route as DatasetsHealthRouteImport } from './routes/datasets/health'
@@ -38,15 +39,19 @@ const ApplyRoute = ApplyRouteImport.update({
   path: '/apply',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SdgDatasetUtilizationRfpRoute =
-  SdgDatasetUtilizationRfpRouteImport.update({
-    id: '/sdg-dataset-utilization-rfp',
-    path: '/sdg-dataset-utilization-rfp',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const RfpRoute = RfpRouteImport.update({
+  id: '/rfp',
+  path: '/rfp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DatasetsIndexRoute = DatasetsIndexRouteImport.update({
   id: '/datasets/',
   path: '/datasets/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatasetsDomainRoute = DatasetsDomainRouteImport.update({
+  id: '/datasets/$domain',
+  path: '/datasets/$domain',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DatasetsAgricultureRoute = DatasetsAgricultureRouteImport.update({
@@ -96,7 +101,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
-  '/sdg-dataset-utilization-rfp': typeof SdgDatasetUtilizationRfpRoute
+  '/rfp': typeof RfpRoute
+  '/datasets/$domain': typeof DatasetsDomainRoute
   '/datasets/agriculture': typeof DatasetsAgricultureRoute
   '/datasets/climate': typeof DatasetsClimateRoute
   '/datasets/health': typeof DatasetsHealthRoute
@@ -111,7 +117,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
-  '/sdg-dataset-utilization-rfp': typeof SdgDatasetUtilizationRfpRoute
+  '/rfp': typeof RfpRoute
+  '/datasets/$domain': typeof DatasetsDomainRoute
   '/datasets/agriculture': typeof DatasetsAgricultureRoute
   '/datasets/climate': typeof DatasetsClimateRoute
   '/datasets/health': typeof DatasetsHealthRoute
@@ -127,7 +134,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
-  '/sdg-dataset-utilization-rfp': typeof SdgDatasetUtilizationRfpRoute
+  '/rfp': typeof RfpRoute
+  '/datasets/$domain': typeof DatasetsDomainRoute
   '/datasets/agriculture': typeof DatasetsAgricultureRoute
   '/datasets/climate': typeof DatasetsClimateRoute
   '/datasets/health': typeof DatasetsHealthRoute
@@ -144,7 +152,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/apply'
-    | '/sdg-dataset-utilization-rfp'
+    | '/rfp'
+    | '/datasets/$domain'
     | '/datasets/agriculture'
     | '/datasets/climate'
     | '/datasets/health'
@@ -159,7 +168,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/apply'
-    | '/sdg-dataset-utilization-rfp'
+    | '/rfp'
+    | '/datasets/$domain'
     | '/datasets/agriculture'
     | '/datasets/climate'
     | '/datasets/health'
@@ -174,7 +184,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/apply'
-    | '/sdg-dataset-utilization-rfp'
+    | '/rfp'
+    | '/datasets/$domain'
     | '/datasets/agriculture'
     | '/datasets/climate'
     | '/datasets/health'
@@ -190,7 +201,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ApplyRoute: typeof ApplyRoute
-  SdgDatasetUtilizationRfpRoute: typeof SdgDatasetUtilizationRfpRoute
+  RfpRoute: typeof RfpRoute
+  DatasetsDomainRoute: typeof DatasetsDomainRoute
   DatasetsAgricultureRoute: typeof DatasetsAgricultureRoute
   DatasetsClimateRoute: typeof DatasetsClimateRoute
   DatasetsHealthRoute: typeof DatasetsHealthRoute
@@ -225,11 +237,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApplyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sdg-dataset-utilization-rfp': {
-      id: '/sdg-dataset-utilization-rfp'
-      path: '/sdg-dataset-utilization-rfp'
-      fullPath: '/sdg-dataset-utilization-rfp'
-      preLoaderRoute: typeof SdgDatasetUtilizationRfpRouteImport
+    '/rfp': {
+      id: '/rfp'
+      path: '/rfp'
+      fullPath: '/rfp'
+      preLoaderRoute: typeof RfpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/datasets/': {
@@ -237,6 +249,13 @@ declare module '@tanstack/react-router' {
       path: '/datasets'
       fullPath: '/datasets/'
       preLoaderRoute: typeof DatasetsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/datasets/$domain': {
+      id: '/datasets/$domain'
+      path: '/datasets/$domain'
+      fullPath: '/datasets/$domain'
+      preLoaderRoute: typeof DatasetsDomainRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/datasets/agriculture': {
@@ -302,7 +321,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ApplyRoute: ApplyRoute,
-  SdgDatasetUtilizationRfpRoute: SdgDatasetUtilizationRfpRoute,
+  RfpRoute: RfpRoute,
+  DatasetsDomainRoute: DatasetsDomainRoute,
   DatasetsAgricultureRoute: DatasetsAgricultureRoute,
   DatasetsClimateRoute: DatasetsClimateRoute,
   DatasetsHealthRoute: DatasetsHealthRoute,

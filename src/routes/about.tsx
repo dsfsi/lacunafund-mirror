@@ -28,13 +28,13 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Why labeled, unbiased data is missing in low- and middle-income contexts, and how Lacuna Fund funds locally owned datasets across agriculture, language, health and climate.",
+          "Why unbiased training and evaluation data are missing in low- and middle-income contexts, and how Lacuna Fund funds locally owned datasets across agriculture, language, health and climate.",
       },
       { property: "og:title", content: "About Lacuna Fund — The Need and Our Approach" },
       {
         property: "og:description",
         content:
-          "Lacuna Fund provides data scientists, researchers and social entrepreneurs with resources to produce labeled datasets that address urgent local problems.",
+          "Lacuna Fund provides data scientists, researchers and social entrepreneurs with resources to produce training and evaluation data that address urgent local problems.",
       },
     ],
   }),
@@ -82,7 +82,7 @@ function AboutPage() {
 
         <ContentSection
           eyebrow="Our approach"
-          title="The World's First Collaborative Effort to Fund Labeled Data for Social Impact"
+          title="The World's First Collaborative Effort to Fund Training and Evaluation Data for Social Impact"
         >
           <div className="space-y-4">
             {about.collaborative.map((p) => (

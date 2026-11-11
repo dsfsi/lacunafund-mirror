@@ -19,7 +19,7 @@ export const Route = createFileRoute("/governance/steering-committee")({
       {
         property: "og:description",
         content:
-          "Members bring understanding of labeled data globally and transformative interventions in machine learning, equity and development.",
+          "Members bring understanding of training and evaluation data globally and transformative interventions in machine learning, equity and development.",
       },
     ],
   }),

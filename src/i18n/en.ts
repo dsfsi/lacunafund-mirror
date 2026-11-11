@@ -9,9 +9,9 @@ export const en = {
 
   site: {
     name: "Lacuna Fund",
-    tagline: "Mobilizing funding for labeled datasets that solve urgent problems",
-    secretariatUrl: "https://merid.org/",
-    shortTagline: "Labeled data for social impact",
+    tagline: "Mobilizing funding for training and evaluation data that solve urgent problems",
+    secretariatUrl: "https://acts-net.org/",
+    shortTagline: "Training and evaluation data for social impact",
     footerBlurb: "in low- and middle-income contexts globally.",
     footerLegal: "a funder collaborative for equitable machine learning data.",
   },
@@ -71,7 +71,7 @@ export const en = {
     language: "Language",
     explore: "Explore",
     policiesAndSecretariat: "Policies & Secretariat",
-    secretariatLink: "Meridian Institute (Secretariat)",
+    secretariatLink: "African Centre for Technology Studies (ACTS) (Secretariat)",
     apply: "Apply",
     learnMore: "Learn more",
     seeDatasets: "See datasets",
@@ -86,11 +86,11 @@ export const en = {
   },
 
   home: {
-    badge: "Labeled data for social impact",
+    badge: "Training and evaluation data for social impact",
     headline:
       "Putting the benefits of machine learning within reach of data scientists, researchers, and social entrepreneurs worldwide.",
     subhead:
-      "We mobilize funding for labeled datasets that solve urgent problems in low- and middle-income contexts globally",
+      "We mobilize funding for training and evaluation data that solve urgent problems in low- and middle-income contexts globally",
     ctaApply: "Apply for funding",
     ctaDatasets: "Explore datasets",
     video: {
@@ -103,8 +103,8 @@ export const en = {
     whyTitle: "A first-of-its-kind funder collaborative",
     aboutButton: "About the Fund",
     intro: [
-      "Machine learning has shown great potential to address critical needs, but in low- and middle-income contexts globally, a lack of unbiased, labeled data puts the benefits out of reach. Lacuna Fund is the world's first collaborative effort to directly address this problem.",
-      "Guided by machine learning professionals worldwide, Lacuna Fund will provide data scientists, researchers, and social entrepreneurs with the resources they need to either produce new labeled datasets to address an underserved population or problem, augment existing datasets to be more representative, or update old datasets to be more sustainable.",
+      "Machine learning has shown great potential to address critical needs, but in low- and middle-income contexts globally, a lack of unbiased training and evaluation data puts the benefits out of reach. Lacuna Fund is the world's first collaborative effort to directly address this problem.",
+      "Guided by machine learning professionals worldwide, Lacuna Fund will provide data scientists, researchers, and social entrepreneurs with the resources they need to either produce new training and evaluation data to address an underserved population or problem, augment existing datasets to be more representative, or update old datasets to be more sustainable.",
     ],
     statsEyebrow: "At a glance",
     statsTitle: "The Fund in numbers",
@@ -123,7 +123,7 @@ export const en = {
     fundingPartnersIntro:
       "Lacuna Fund began as a funder collaborative between The Rockefeller Foundation, Google.org, and Canada's International Development Research Centre, but it has since evolved into a multi-stakeholder engagement supported by a range of development, philanthropic, and research institutions.",
     quote: {
-      text: "Labeled data is the fuel for machine learning. We're proud to launch Lacuna Fund to give the next generation of engineers and scientists worldwide the fuel they need to build tools that strengthen agriculture systems, support health decisions, and enable natural language processing.",
+      text: "Training and evaluation data are the fuel for machine learning. We're proud to launch Lacuna Fund to give the next generation of engineers and scientists worldwide the fuel they need to build tools that strengthen agriculture systems, support health decisions, and enable natural language processing.",
       author: "Evan Tachovsky",
       role: "Director and Lead Data Scientist, The Rockefeller Foundation",
     },
@@ -158,18 +158,18 @@ export const en = {
     eyebrow: "About",
     title: "About Lacuna Fund",
     intro:
-      "Lacuna Fund is the world's first collaborative effort to provide data scientists, researchers, and social entrepreneurs in low- and middle-income contexts globally with the resources they need to produce labeled datasets that address urgent problems in their communities.",
+      "Lacuna Fund is the world's first collaborative effort to provide data scientists, researchers, and social entrepreneurs in low- and middle-income contexts globally with the resources they need to produce training and evaluation data that address urgent problems in their communities.",
     needEyebrow: "The challenge",
     needTitle: "The Need",
     need: [
       "Machine learning has shown great potential to revolutionize everything from how farmers increase their crop yields, to how governments communicate with their citizens during natural disasters, to how healthcare providers respond to global pandemics.",
-      "But in low- and middle-income contexts globally, a lack of labeled and unbiased data puts the benefits of machine learning out of reach.",
+      "But in low- and middle-income contexts globally, a lack of unbiased training and evaluation data puts the benefits of machine learning out of reach.",
       "In many cases, data required to build AI applications for real-world problems doesn't exist. And where it does exist, it's often outdated, missing key information, or not representative of underserved populations, leading to bias and decreased accuracy.",
       "Machine learning tools then \u201clearn\u201d these biases, which can lead to harmful outcomes for people of color, women, and other marginalized populations.",
     ],
     approachEyebrow: "Our approach",
     approachTitle:
-      "The World's First Collaborative Effort to Fund Labeled Data for Social Impact",
+      "The World's First Collaborative Effort to Fund Training and Evaluation Data for Social Impact",
     collaborative: [
       "Lacuna Fund will provide data scientists, researchers, and social entrepreneurs in low- and middle-income contexts globally with the resources they need to either produce new datasets to address an underserved population or problem, augment existing datasets to be more representative, or update old datasets to be more sustainable.",
       "Guided by machine learning professionals worldwide, Lacuna Fund is designed for and by the communities it will serve.",
@@ -187,7 +187,7 @@ export const en = {
     grantmakingEyebrow: "Grantmaking",
     grantmakingTitle: "Our Grantmaking",
     grantmaking: [
-      "The Steering Committee has chosen to focus Lacuna Fund's grantmaking to support the creation, expansion, and maintenance of labeled datasets in three domain areas with key needs: agriculture, health, language, and climate.",
+      "The Steering Committee has chosen to focus Lacuna Fund's grantmaking to support the creation, expansion, and maintenance of training and evaluation data in four domain areas with key needs: agriculture, health, language, and climate.",
       "We accept applications from non-profit entities, research institutions, for-profit social enterprises, or teams of such organizations through our requests for proposals (RFPs). Organizations seeking to apply should have the technical capacity to conduct dataset labeling, creation, expansion, and/or maintenance.",
       "One requirement of applicants is that the datasets are locally developed and owned. We believe that local researchers need to create this data and see it through to implementation because that's where the greatest potential for systemic change lies.",
     ],
@@ -197,7 +197,7 @@ export const en = {
     aims: [
       "Disburse funds to institutions to create, expand, and/or maintain datasets that fill gaps and reduce bias in training data used for machine learning.",
       "Make it possible for underserved populations to take advantage of advances offered by AI.",
-      "Deepen understanding by the machine learning and philanthropy communities of how to most effectively and efficiently fund development and maintenance of equitably labeled datasets.",
+      "Deepen understanding by the machine learning and philanthropy communities of how to most effectively and efficiently fund development and maintenance of equitably developed training and evaluation data.",
     ],
     aimsBody: [
       "While Lacuna Fund's objective is to produce more equitable open source datasets, this is bigger than just data collection and labeling. We are working towards data collection protocols that ensure the data is scalable and replicable.",
@@ -257,7 +257,7 @@ export const en = {
     eyebrow: "Datasets",
     title: "Datasets by domain",
     intro:
-      "Lacuna Fund grantees produce openly accessible, locally owned labeled datasets. Explore released datasets in each domain area.",
+      "Lacuna Fund grantees produce openly accessible, locally owned training and evaluation data. Explore released datasets in each domain area.",
     stats: {
       agriculture: "Agriculture datasets",
       language: "Language datasets",
@@ -311,7 +311,7 @@ export const en = {
     principles: [
       {
         title: "Accessibility",
-        body: "Lacuna Fund is committed to ensuring that labeled datasets created through its funding are accessible to and benefit underserved communities in service of the Fund's goals. Datasets and related intellectual property will utilize appropriate open data licensing to maximize responsible downstream use. (See IP policy for additional details.)",
+        body: "Lacuna Fund is committed to ensuring that training and evaluation data created through its funding are accessible to and benefit underserved communities in service of the Fund's goals. Datasets and related intellectual property will utilize appropriate open data licensing to maximize responsible downstream use. (See IP policy for additional details.)",
       },
       {
         title: "Equity",
@@ -359,8 +359,8 @@ export const en = {
     supportEyebrow: "Support",
     supportTitle: "Secretariat",
     secretariat:
-      "The Secretariat provides backbone support to the Fund as a whole, including managing the RFP process and distribution of funds. Meridian Institute serves as Secretariat for the Lacuna Fund.",
-    secretariatButton: "Learn more about Meridian Institute",
+      "African Centre for Technology Studies (ACTS) serves as the Secretariat for Lacuna Fund.",
+    secretariatButton: "Learn more about African Centre for Technology Studies (ACTS)",
     documentsEyebrow: "Documents",
     documentsTitle: "Key Policies and Resources",
     policies: [
@@ -379,7 +379,7 @@ export const en = {
     title: "Lacuna Fund Steering Committee",
     crumb: "Steering Committee",
     intro:
-      "The Steering Committee governs Lacuna Fund, while maintaining a balance of perspectives that serve our Guiding Principles. Steering Committee members possess an understanding of labeled data globally, and potential transformative interventions in the space of machine learning, equity, and development. They also help us leverage strong relationships with broader communities critical to the Fund's success.",
+      "The Steering Committee governs Lacuna Fund, while maintaining a balance of perspectives that serve our Guiding Principles. Steering Committee members possess an understanding of training and evaluation data globally, and potential transformative interventions in the space of machine learning, equity, and development. They also help us leverage strong relationships with broader communities critical to the Fund's success.",
     roleEyebrow: "Role",
     roleTitle: "Steering Committee",
     role: "Our Steering Committee provides strategic direction and oversight for the Lacuna Fund, working to ensure the Fund's focus, impact, and growth.",
@@ -427,7 +427,7 @@ export const en = {
   funders: {
     title: "Funders",
     intro:
-      "Lacuna Fund began as a funder collaborative between The Rockefeller Foundation, Google.org, and Canada's International Development Research Centre, but it has since evolved into a multi-stakeholder engagement supported by a range of development, philanthropic, and research institutions. Collectively, we are committed to creating and mobilizing labeled datasets that both solve urgent local problems and lead to a step change in machine learning's potential worldwide.",
+      "Lacuna Fund began as a funder collaborative between The Rockefeller Foundation, Google.org, and Canada's International Development Research Centre, but it has since evolved into a multi-stakeholder engagement supported by a range of development, philanthropic, and research institutions. Collectively, we are committed to creating and mobilizing training and evaluation data that both solve urgent local problems and lead to a step change in machine learning's potential worldwide.",
     calloutTitle: "Global initiative",
     callout: {
       text: "This project is part of a global IDRC-funded initiative on AI for Global Health",
@@ -526,7 +526,7 @@ export const en = {
       {
         step: "04",
         title: "Grants disbursed by the Secretariat",
-        body: "Meridian Institute, as Secretariat, manages the RFP process and the distribution of funds.",
+        body: "African Centre for Technology Studies (ACTS), as Secretariat, manages the RFP process and the distribution of funds.",
       },
       {
         step: "05",

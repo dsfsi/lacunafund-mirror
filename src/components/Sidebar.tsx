@@ -79,7 +79,7 @@ export function Sidebar({
                   {site.name}
                 </span>
                 <span className="block truncate text-[11px] text-muted-foreground">
-                  Labeled data for social impact
+                  Training and evaluation data for social impact
                 </span>
               </span>
             )}
