@@ -1,6 +1,6 @@
 # Lacuna Fund Website
 
-The live, official website for [Lacuna Fund](https://lacunafund.org) — a funder collaborative mobilizing funding for labeled datasets that solve urgent problems in low- and middle-income contexts globally. Deployed to [lacunafund.org](https://lacunafund.org) via GitHub Pages.
+The live, official website for [Lacuna Fund](https://lacunafund.org) — a funder collaborative mobilizing funding for training and evaluation data that solve urgent problems in low- and middle-income contexts globally. Deployed to [lacunafund.org](https://lacunafund.org) via GitHub Pages.
 
 This project is built with [Lovable](https://lovable.dev).
 

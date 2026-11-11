@@ -1,21 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
 import { BasePage } from "@/components/BasePage";
-import { DatasetList, type DatasetEntry } from "@/components/DatasetList";
+import { DatasetList, type DatasetCategory, type DatasetEntry } from "@/components/DatasetList";
 import { Card, ContentSection, InfoPanel } from "@/components/ui-kit";
 import { domains } from "@/data/site";
-import { fundedDatasetDomains, fundedDatasetEntries } from "@/data/funded-dataset-domains.generated";
+import datasets from "@/data/datasets.json";
+import { spreadsheetDomainForTitle } from "@/lib/dataset-domains";
 import { socialMeta } from "@/lib/seo";
 import agri2Image from "@/assets/agri2.jpg";
 import health2Image from "@/assets/health2.jpg";
 import climate2Image from "@/assets/climate2.jpg";
 import lang2Image from "@/assets/lang2.jpg";
 
-const allDatasets: DatasetEntry[] = fundedDatasetEntries.map((entry) => ({
-  ...entry,
-  fields: [...entry.fields],
-  body: [...entry.body],
-}));
+const datasetGroups = datasets as Record<string, DatasetEntry[]>;
+const allDatasets: DatasetEntry[] = Object.entries(datasetGroups).flatMap(([category, entries]) =>
+  entries.map((entry) => ({
+    ...entry,
+    category: spreadsheetDomainForTitle(entry.title) ?? (category as DatasetCategory),
+    fields: [...entry.fields],
+    body: [...entry.body],
+  })),
+);
 
 const domainImages: Record<string, string> = {
   agriculture: agri2Image,
@@ -61,12 +66,7 @@ function DatasetsPage() {
       >
         <ContentSection eyebrow="Domains" title="Choose a domain">
           <div className="grid gap-5 sm:grid-cols-2">
-            {fundedDatasetDomains.map((generatedDomain, i) => {
-              const domain = domains.find((item) => item.key === generatedDomain.key) ?? {
-                ...generatedDomain,
-                to: `/datasets/${generatedDomain.key}`,
-                summary: `Explore Lacuna Fund datasets in ${generatedDomain.label}.`,
-              };
+            {domains.map((domain, i) => {
               const image = domainImages[domain.key];
               return (
                 <Card
