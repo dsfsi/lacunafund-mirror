@@ -30,7 +30,7 @@ const allEntries = Object.entries(datasets as Record<string, DatasetEntry[]>).fl
 function countAuthors(entries: DatasetEntry[]) {
   const names = new Set<string>();
   for (const entry of entries) {
-    const field = entry.fields.find((f) => /author/i.test(f.label));
+    const field = entry.fields.find((f) => /author|research team/i.test(f.label));
     if (!field?.value) continue;
     for (const part of field.value.split(/,| and |;/)) {
       const name = part.replace(/\(.*?\)/g, "").trim();
@@ -69,7 +69,7 @@ export function DomainPage({ domainKey }: { domainKey: string }) {
       >
         <StatGrid
           items={[
-            { value: String(entries.length), label: "Released datasets", tone: "primary" },
+            { value: String(entries.length), label: "Funded datasets", tone: "primary" },
             { value: authors ? `${authors}+` : "—", label: "Contributing authors", tone: "sky" },
             { value: "Open", label: "Access & licensing", tone: "gold" },
             { value: domain.label, label: "Domain area", tone: "sky" },
@@ -103,7 +103,7 @@ export function DomainPage({ domainKey }: { domainKey: string }) {
         )}
 
         <ContentSection
-          eyebrow="Released datasets"
+          eyebrow="Funded datasets"
           title={entries.length ? `${entries.length} datasets` : "Datasets in progress"}
           description={
             entries.length

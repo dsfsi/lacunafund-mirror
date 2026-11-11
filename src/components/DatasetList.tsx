@@ -232,7 +232,7 @@ export function DatasetList({ entries, unified = false }: { entries: DatasetEntr
       <Accordion type="single" collapsible className="space-y-4">
         {filtered.map((entry, index) => {
           const url = firstUrl(entry);
-          const authors = entry.fields.find((f) => /author/i.test(f.label))?.value;
+          const authors = entry.fields.find((f) => /author|research team/i.test(f.label))?.value;
           return (
             <AccordionItem
               key={entry.title + index}

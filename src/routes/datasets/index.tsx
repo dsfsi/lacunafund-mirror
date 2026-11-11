@@ -73,7 +73,7 @@ function DatasetsPage() {
                   key={domain.key}
                   eyebrow={
                     counts[domain.key]
-                      ? `${counts[domain.key] ?? 0} released datasets`
+                      ? `${counts[domain.key] ?? 0} funded datasets`
                       : "Grantmaking underway"
                   }
                   title={domain.label}

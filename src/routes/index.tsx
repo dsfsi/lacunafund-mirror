@@ -34,10 +34,7 @@ export const Route = createFileRoute("/")({
 const datasetCounts = datasets as Record<string, unknown[]>;
 
 function HomePage() {
-  const total =
-    (datasetCounts['agriculture']?.length ?? 0) +
-    (datasetCounts['language']?.length ?? 0) +
-    (datasetCounts['health']?.length ?? 0);
+  const total = Object.values(datasetCounts).reduce((count, entries) => count + entries.length, 0);
 
   return (
     <AppShell>
@@ -118,7 +115,7 @@ function HomePage() {
         <ContentSection eyebrow="At a glance" title="The Fund in numbers">
           <StatGrid
             items={[
-              { value: String(total), label: "Published datasets listed", tone: "primary" },
+              { value: String(total), label: "Funded datasets listed", tone: "primary" },
               { value: "4", label: "Domain areas funded", tone: "sky" },
               { value: String(taps.panels.length), label: "Technical advisory panels", tone: "gold" },
               { value: String(funders.list.length), label: "Funding partners", tone: "primary" },
