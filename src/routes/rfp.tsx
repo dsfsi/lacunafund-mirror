@@ -6,7 +6,7 @@ import { Button, ContentSection, InfoPanel, StatGrid } from "@/components/ui-kit
 import { sdgDatasetUtilizationRfp as rfp } from "@/data/site";
 import { socialMeta } from "@/lib/seo";
 
-export const Route = createFileRoute("/sdg-dataset-utilization-rfp")({
+export const Route = createFileRoute("/rfp")({
   head: () => ({
     meta: [
       ...socialMeta,

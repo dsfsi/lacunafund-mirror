@@ -80,7 +80,7 @@ function GovernancePage() {
           <InfoPanel tone="sky">{governance.secretariat}</InfoPanel>
           <div className="mt-6">
             <Button href={site.secretariatUrl} variant="outline" size="sm">
-              Learn more about Meridian Institute
+              Learn more about African Centre for Technology Studies (ACTS)
             </Button>
           </div>
         </ContentSection>

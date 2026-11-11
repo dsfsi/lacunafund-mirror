@@ -1,22 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CalendarClock } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { BasePage } from "@/components/BasePage";
-import { DatasetList, type DatasetCategory, type DatasetEntry } from "@/components/DatasetList";
-import { Card, ContentSection, InfoPanel, StatGrid } from "@/components/ui-kit";
+import { DatasetList, type DatasetEntry } from "@/components/DatasetList";
+import { Card, ContentSection, InfoPanel } from "@/components/ui-kit";
 import { domains } from "@/data/site";
-import datasets from "@/data/datasets.json";
-import { useGoogleSheetDatasets } from "@/lib/google-sheet-datasets";
+import { fundedDatasetDomains, fundedDatasetEntries } from "@/data/funded-dataset-domains.generated";
 import { socialMeta } from "@/lib/seo";
 import agri2Image from "@/assets/agri2.jpg";
 import health2Image from "@/assets/health2.jpg";
 import climate2Image from "@/assets/climate2.jpg";
 import lang2Image from "@/assets/lang2.jpg";
 
-const datasetGroups = datasets as Record<string, DatasetEntry[]>;
-const fallbackDatasets = Object.entries(datasetGroups).flatMap(([category, entries]) =>
-  entries.map((entry) => ({ ...entry, category: category as DatasetCategory })),
-);
+const allDatasets: DatasetEntry[] = fundedDatasetEntries.map((entry) => ({
+  ...entry,
+  fields: [...entry.fields],
+  body: [...entry.body],
+}));
 
 const domainImages: Record<string, string> = {
   agriculture: agri2Image,
@@ -47,7 +46,6 @@ export const Route = createFileRoute("/datasets/")({
 });
 
 function DatasetsPage() {
-  const { entries: allDatasets, status } = useGoogleSheetDatasets(fallbackDatasets);
   const counts = allDatasets.reduce<Record<string, number>>((totals, entry) => {
     if (entry.category) totals[entry.category] = (totals[entry.category] ?? 0) + 1;
     return totals;
@@ -58,36 +56,17 @@ function DatasetsPage() {
       <BasePage
         eyebrow="Datasets"
         title="Datasets by domain"
-        intro="Lacuna Fund grantees produce openly accessible, locally owned labeled datasets. Explore released datasets in each domain area."
+        intro="Lacuna Fund grantees produce openly accessible, locally owned training and evaluation data. Explore released datasets in each domain area."
         crumbs={[{ label: "Datasets" }]}
       >
-        <div className="mb-8 flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/8 px-4 py-3 text-sm text-foreground halo-primary">
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/12 text-primary">
-            <CalendarClock className="size-4" aria-hidden />
-          </span>
-          <p>
-            {status === "live" ? (
-              <>Live catalogue from Google Sheets · last updated <strong className="font-semibold">20 September 2026</strong></>
-            ) : status === "loading" ? (
-              <>Loading the latest catalogue from Google Sheets…</>
-            ) : (
-              <>Showing the saved catalogue · last updated <strong className="font-semibold">20 September 2026</strong></>
-            )}
-          </p>
-        </div>
-
-        <StatGrid
-          items={[
-            { value: String(counts["agriculture"] ?? 0), label: "Agriculture datasets" },
-            { value: String(counts["language"] ?? 0), label: "Language datasets" },
-            { value: String(counts["health"] ?? 0), label: "Health datasets" },
-            { value: "4", label: "Domain areas" },
-          ]}
-        />
-
         <ContentSection eyebrow="Domains" title="Choose a domain">
           <div className="grid gap-5 sm:grid-cols-2">
-            {domains.map((domain, i) => {
+            {fundedDatasetDomains.map((generatedDomain, i) => {
+              const domain = domains.find((item) => item.key === generatedDomain.key) ?? {
+                ...generatedDomain,
+                to: `/datasets/${generatedDomain.key}`,
+                summary: `Explore Lacuna Fund datasets in ${generatedDomain.label}.`,
+              };
               const image = domainImages[domain.key];
               return (
                 <Card

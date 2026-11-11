@@ -14,17 +14,17 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       ...socialMeta,
-      { title: "Lacuna Fund — Labeled Data for Equitable Machine Learning" },
+      { title: "Lacuna Fund — Training and Evaluation Data for Equitable Machine Learning" },
       {
         name: "description",
         content:
-          "Lacuna Fund mobilizes funding for labeled datasets that solve urgent problems in low- and middle-income contexts, across agriculture, language, health and climate.",
+          "Lacuna Fund mobilizes funding for training and evaluation data that solve urgent problems in low- and middle-income contexts, across agriculture, language, health and climate.",
       },
-      { property: "og:title", content: "Lacuna Fund — Labeled Data for Equitable Machine Learning" },
+      { property: "og:title", content: "Lacuna Fund — Training and Evaluation Data for Equitable Machine Learning" },
       {
         property: "og:description",
         content:
-          "The world's first collaborative effort to fund labeled datasets for social impact in low- and middle-income contexts globally.",
+          "The world's first collaborative effort to fund training and evaluation data for social impact in low- and middle-income contexts globally.",
       },
     ],
   }),

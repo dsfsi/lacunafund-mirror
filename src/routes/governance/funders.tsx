@@ -20,7 +20,7 @@ export const Route = createFileRoute("/governance/funders")({
       {
         property: "og:description",
         content:
-          "Development, philanthropic and research institutions committed to mobilizing labeled datasets that solve urgent local problems.",
+          "Development, philanthropic and research institutions committed to mobilizing training and evaluation data that solve urgent local problems.",
       },
     ],
   }),

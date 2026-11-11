@@ -14,7 +14,7 @@ export const Route = createFileRoute("/apply")({
       {
         name: "description",
         content:
-          "Who can apply to Lacuna Fund, the requirements for locally owned labeled datasets, and how the request for proposals process works from panel to published dataset.",
+          "Who can apply to Lacuna Fund, the requirements for locally owned training and evaluation data, and how the request for proposals process works from panel to published dataset.",
       },
       { property: "og:title", content: "Apply — Lacuna Fund Requests for Proposals" },
       {
@@ -42,7 +42,7 @@ function ApplyPage() {
             Lacuna Fund datasets. Full proposals are due 13 November 2026.
             <div className="mt-4">
               <Button
-                to="/sdg-dataset-utilization-rfp"
+                to="/rfp"
                 size="sm"
                 className="!text-white hover:!text-white"
               >

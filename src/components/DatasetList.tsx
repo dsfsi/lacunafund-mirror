@@ -16,8 +16,8 @@ import {
 } from "@/components/ui/select";
 import { renderInline } from "@/components/Markdown";
 
-export type DatasetField = { label: string; value: string; items?: string[] };
-export type DatasetCategory = "agriculture" | "language" | "health" | "climate";
+export type DatasetField = { label: string; value: string; items?: readonly string[] };
+export type DatasetCategory = string;
 export type DatasetEntry = {
   title: string;
   fields: DatasetField[];
@@ -33,12 +33,16 @@ function firstUrl(entry: DatasetEntry): string | undefined {
   return match?.[0];
 }
 
-const categoryLabels: Record<DatasetCategory, string> = {
+const categoryLabels: Record<string, string> = {
   agriculture: "Agriculture",
   language: "Language",
   health: "Health",
   climate: "Climate",
 };
+
+function categoryLabel(category: DatasetCategory) {
+  return categoryLabels[category] ?? category.replace(/-/g, " ");
+}
 
 const metadataLabels = {
   language: /^languages?$/i,
@@ -77,6 +81,10 @@ export function DatasetList({ entries, unified = false }: { entries: DatasetEntr
         if (entry.category) counts[entry.category] = (counts[entry.category] ?? 0) + 1;
         return counts;
       }, {}),
+    [entries],
+  );
+  const categoryOptions = useMemo(
+    () => Array.from(new Set(entries.flatMap((entry) => (entry.category ? [entry.category] : [])))).sort(),
     [entries],
   );
 
@@ -138,9 +146,9 @@ export function DatasetList({ entries, unified = false }: { entries: DatasetEntr
         {unified && (
           <div className="mt-4 space-y-4">
             <div className="flex flex-wrap gap-2" aria-label="Filter by category">
-              {(["all", "agriculture", "language", "health", "climate"] as const).map(
+              {(["all", ...categoryOptions] as const).map(
                 (value) => {
-                  const label = value === "all" ? "All datasets" : categoryLabels[value];
+                  const label = value === "all" ? "All datasets" : categoryLabel(value);
                   const count = value === "all" ? entries.length : (categoryCounts[value] ?? 0);
                   return (
                     <Button
@@ -241,7 +249,7 @@ export function DatasetList({ entries, unified = false }: { entries: DatasetEntr
                   <span className="min-w-0">
                     {entry.category && (
                       <span className="mb-1 block text-[10px] font-semibold tracking-[0.14em] text-primary uppercase">
-                        {categoryLabels[entry.category]}
+                        {categoryLabel(entry.category)}
                       </span>
                     )}
                     <span className="block text-[15px] font-semibold text-foreground">

@@ -19,6 +19,8 @@ Other scripts: `bun run build` (production build, prerenders every route to stat
 
 To edit site content (navigation, page copy, links, dataset catalogue), edit `src/data/site.ts` and `src/data/datasets.json` rather than the page components — see `AGENTS.md`/`CLAUDE.md` for the fuller architecture rundown.
 
+The current open Request for Proposals is available at [`/rfp`](https://lacunafund.org/rfp).
+
 ## Deploying
 
 See `DEPLOY.md` for the static-export process, and `.github/workflows/github-pages.yml` for the actual CI deploy (push to `master`).

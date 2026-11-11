@@ -63,7 +63,7 @@ export function Footer() {
                 rel="noreferrer noopener"
                 className="text-muted-foreground transition-colors hover:text-primary"
               >
-                Meridian Institute (Secretariat)
+                African Centre for Technology Studies (ACTS) (Secretariat)
               </a>
             </li>
           </ul>

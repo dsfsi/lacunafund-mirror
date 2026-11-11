@@ -77,18 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lacuna Fund — Labeled Data for Social Impact" },
+      { title: "Lacuna Fund — Training and Evaluation Data for Social Impact" },
       {
         name: "description",
         content:
-          "Lacuna Fund mobilizes funding for labeled datasets that solve urgent problems in low- and middle-income contexts globally.",
+          "Lacuna Fund mobilizes funding for training and evaluation data that solve urgent problems in low- and middle-income contexts globally.",
       },
       { name: "author", content: "Lacuna Fund" },
-      { property: "og:title", content: "Lacuna Fund — Labeled Data for Social Impact" },
+      { property: "og:title", content: "Lacuna Fund — Training and Evaluation Data for Social Impact" },
       {
         property: "og:description",
         content:
-          "The world's first collaborative effort to fund labeled data for social impact across agriculture, language, health and climate.",
+          "The world's first collaborative effort to fund training and evaluation data for social impact across agriculture, language, health and climate.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
