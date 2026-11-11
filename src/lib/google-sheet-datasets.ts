@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { DatasetCategory, DatasetEntry, DatasetField } from "@/components/DatasetList";
-import { fundedDatasetDomain } from "@/data/funded-dataset-domains";
 
 const spreadsheetId = "18sgZgPGZuZjeBTHrmbr1Ra7mx8vSToUqnx8vCjhIp0c";
 const sheetId = "2002859408";
@@ -12,20 +11,7 @@ type GoogleResponse = { status?: string; table?: GoogleTable };
 const text = (cell: GoogleCell) => String(cell?.f ?? cell?.v ?? "").trim();
 
 function categoryFor(row: string[]): DatasetCategory {
-  const titleCandidates = [row[1], row[2]].filter(Boolean);
-  for (const title of titleCandidates) {
-    const fundedDomain = fundedDatasetDomain(title);
-    if (fundedDomain) return fundedDomain;
-  }
-
-  const title = titleCandidates[0] || "";
-
-  const technicalDomain = row[16]?.toLowerCase() ?? "";
-  if (/language|lingu|speech|translation|corpus|nlp/.test(technicalDomain)) return "language";
-  if (/agric|crop|farm|maize|aquaponic|food security/.test(technicalDomain)) return "agriculture";
-  if (/health|medical|malaria|tumou?r|anesthesia|rabies|malnutrition|microscopy/.test(technicalDomain)) return "health";
-  if (/climate|energy|forest|environment|emission/.test(technicalDomain)) return "climate";
-
+  const title = row[1] || row[2] || "";
   const combined = `${title} ${row[3]} ${row[4]} ${row[7]} ${row[16]}`.toLowerCase();
 
   if (/health|medical|malaria|tumou?r|anesthesia|rabies|malnutrition|microscopy/.test(combined)) {
@@ -34,7 +20,11 @@ function categoryFor(row: string[]): DatasetCategory {
   if (/agric|crop|farm|maize|cashew|cocoa|coffee|aquaponic|food security|sdg\s*2/.test(combined)) {
     return "agriculture";
   }
-  if (/language|lingu|speech|translation|corpus|nlp|sentiment|named entity|part.of.speech/.test(combined)) {
+  if (
+    /language|lingu|speech|translation|corpus|nlp|sentiment|named entity|part.of.speech/.test(
+      combined,
+    )
+  ) {
     return "language";
   }
   return "climate";
@@ -86,7 +76,10 @@ function loadSheet(): Promise<DatasetEntry[]> {
     const callbackName = `lacunaDatasets_${Date.now()}`;
     const browserWindow = window as typeof window & Record<string, unknown>;
     const script = document.createElement("script");
-    const timeout = window.setTimeout(() => finish(new Error("The spreadsheet took too long to respond.")), 15000);
+    const timeout = window.setTimeout(
+      () => finish(new Error("The spreadsheet took too long to respond.")),
+      15000,
+    );
 
     const cleanup = () => {
       window.clearTimeout(timeout);
