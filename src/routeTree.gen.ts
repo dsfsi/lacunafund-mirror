@@ -23,6 +23,8 @@ import { Route as GovernanceIndexRouteImport } from './routes/governance/index'
 import { Route as GovernanceFundersRouteImport } from './routes/governance/funders'
 import { Route as GovernanceSteeringCommitteeRouteImport } from './routes/governance/steering-committee'
 import { Route as GovernanceTechnicalAdvisoryPanelsRouteImport } from './routes/governance/technical-advisory-panels'
+import { Route as StoriesIndexRouteImport } from './routes/stories/index'
+import { Route as StoriesSlugRouteImport } from './routes/stories/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -96,6 +98,16 @@ const GovernanceTechnicalAdvisoryPanelsRoute =
     path: '/governance/technical-advisory-panels',
     getParentRoute: () => rootRouteImport,
   } as any)
+const StoriesIndexRoute = StoriesIndexRouteImport.update({
+  id: '/stories/',
+  path: '/stories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoriesSlugRoute = StoriesSlugRouteImport.update({
+  id: '/stories/$slug',
+  path: '/stories/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -110,8 +122,10 @@ export interface FileRoutesByFullPath {
   '/governance/funders': typeof GovernanceFundersRoute
   '/governance/steering-committee': typeof GovernanceSteeringCommitteeRoute
   '/governance/technical-advisory-panels': typeof GovernanceTechnicalAdvisoryPanelsRoute
+  '/stories/$slug': typeof StoriesSlugRoute
   '/datasets/': typeof DatasetsIndexRoute
   '/governance/': typeof GovernanceIndexRoute
+  '/stories/': typeof StoriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -126,8 +140,10 @@ export interface FileRoutesByTo {
   '/governance/funders': typeof GovernanceFundersRoute
   '/governance/steering-committee': typeof GovernanceSteeringCommitteeRoute
   '/governance/technical-advisory-panels': typeof GovernanceTechnicalAdvisoryPanelsRoute
+  '/stories/$slug': typeof StoriesSlugRoute
   '/datasets': typeof DatasetsIndexRoute
   '/governance': typeof GovernanceIndexRoute
+  '/stories': typeof StoriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,8 +159,10 @@ export interface FileRoutesById {
   '/governance/funders': typeof GovernanceFundersRoute
   '/governance/steering-committee': typeof GovernanceSteeringCommitteeRoute
   '/governance/technical-advisory-panels': typeof GovernanceTechnicalAdvisoryPanelsRoute
+  '/stories/$slug': typeof StoriesSlugRoute
   '/datasets/': typeof DatasetsIndexRoute
   '/governance/': typeof GovernanceIndexRoute
+  '/stories/': typeof StoriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,8 +179,10 @@ export interface FileRouteTypes {
     | '/governance/funders'
     | '/governance/steering-committee'
     | '/governance/technical-advisory-panels'
+    | '/stories/$slug'
     | '/datasets/'
     | '/governance/'
+    | '/stories/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,8 +197,10 @@ export interface FileRouteTypes {
     | '/governance/funders'
     | '/governance/steering-committee'
     | '/governance/technical-advisory-panels'
+    | '/stories/$slug'
     | '/datasets'
     | '/governance'
+    | '/stories'
   id:
     | '__root__'
     | '/'
@@ -193,8 +215,10 @@ export interface FileRouteTypes {
     | '/governance/funders'
     | '/governance/steering-committee'
     | '/governance/technical-advisory-panels'
+    | '/stories/$slug'
     | '/datasets/'
     | '/governance/'
+    | '/stories/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -210,8 +234,10 @@ export interface RootRouteChildren {
   GovernanceFundersRoute: typeof GovernanceFundersRoute
   GovernanceSteeringCommitteeRoute: typeof GovernanceSteeringCommitteeRoute
   GovernanceTechnicalAdvisoryPanelsRoute: typeof GovernanceTechnicalAdvisoryPanelsRoute
+  StoriesSlugRoute: typeof StoriesSlugRoute
   DatasetsIndexRoute: typeof DatasetsIndexRoute
   GovernanceIndexRoute: typeof GovernanceIndexRoute
+  StoriesIndexRoute: typeof StoriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -314,6 +340,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GovernanceTechnicalAdvisoryPanelsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stories/': {
+      id: '/stories/'
+      path: '/stories'
+      fullPath: '/stories/'
+      preLoaderRoute: typeof StoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stories/$slug': {
+      id: '/stories/$slug'
+      path: '/stories/$slug'
+      fullPath: '/stories/$slug'
+      preLoaderRoute: typeof StoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -331,8 +371,10 @@ const rootRouteChildren: RootRouteChildren = {
   GovernanceSteeringCommitteeRoute: GovernanceSteeringCommitteeRoute,
   GovernanceTechnicalAdvisoryPanelsRoute:
     GovernanceTechnicalAdvisoryPanelsRoute,
+  StoriesSlugRoute: StoriesSlugRoute,
   DatasetsIndexRoute: DatasetsIndexRoute,
   GovernanceIndexRoute: GovernanceIndexRoute,
+  StoriesIndexRoute: StoriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

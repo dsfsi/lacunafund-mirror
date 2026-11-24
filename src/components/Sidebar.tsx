@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
+  BookOpen,
   ChevronsLeft,
   ChevronsRight,
   CloudSun,
@@ -19,6 +20,7 @@ import { navigation, site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const icons: Record<string, LucideIcon> = {
+  "book-open": BookOpen,
   home: Home,
   info: Info,
   network: Network,

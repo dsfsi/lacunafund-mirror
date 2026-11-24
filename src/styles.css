@@ -274,3 +274,25 @@ font font {
   background: none !important;
   box-shadow: none !important;
 }
+
+/* Markdown content collections: ordinary headings, paragraphs, links and lists. */
+.content-article h2 {
+  @apply mt-10 text-2xl font-semibold text-foreground sm:text-3xl;
+}
+
+.content-article h3 {
+  @apply mt-7 text-xl font-semibold text-foreground;
+}
+
+.content-article p,
+.content-article li {
+  @apply prose-body mt-4 text-[15px];
+}
+
+.content-article ul {
+  @apply mt-4 space-y-2 pl-5;
+}
+
+.content-article li::marker {
+  color: var(--primary);
+}
