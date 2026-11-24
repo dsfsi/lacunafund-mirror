@@ -6,7 +6,7 @@ hero_image_alt: Lacuna Fund community imagery
 intro: Lacuna Fund is the world's first collaborative effort to provide data scientists, researchers, and social entrepreneurs in low- and middle-income contexts globally with resources to produce training and evaluation data that address urgent problems in their communities.
 ---
 
-<div class="about-content">
+<div class="about-content" markdown="1">
 
 ## The Need
 
